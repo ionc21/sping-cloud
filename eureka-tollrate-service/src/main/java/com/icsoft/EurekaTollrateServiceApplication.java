@@ -2,11 +2,13 @@ package com.icsoft;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+@EnableEurekaClient
 @SpringBootApplication
-public class PluralsightEurekaTollrateServiceApplication {
+public class EurekaTollrateServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PluralsightEurekaTollrateServiceApplication.class, args);
+		SpringApplication.run(EurekaTollrateServiceApplication.class, args);
 	}
 }

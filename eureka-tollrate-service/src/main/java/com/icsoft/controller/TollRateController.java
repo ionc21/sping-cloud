@@ -15,6 +15,8 @@ public class TollRateController {
 	@RequestMapping("/tollrate/{stationId}")
 	public TollRate getTollRate(@PathVariable int stationId) {
 		
+		System.out.println("Station requested: " +stationId);
+		
 		TollRate tr;
 		
 		switch(stationId) {
