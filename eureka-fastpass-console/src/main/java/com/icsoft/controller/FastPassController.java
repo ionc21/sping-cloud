@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.icsoft.bo.FastPassCustomer;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Controller
 public class FastPassController {
@@ -24,7 +25,7 @@ public class FastPassController {
 	@Autowired
 	private RestTemplate restTemplate;	
 
-	
+	@HystrixCommand
 	@RequestMapping(path="/customerdetails", params={"fastpassid"})
 	public String getFastPassCustomerDetails(@RequestParam String fastpassid, Model m) {
 		FastPassCustomer c = restTemplate.getForObject("http://fastpass-service/fastpass?fastpassid=" + fastpassid, FastPassCustomer.class);
