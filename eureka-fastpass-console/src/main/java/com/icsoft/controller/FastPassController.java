@@ -25,7 +25,7 @@ public class FastPassController {
 	@Autowired
 	private RestTemplate restTemplate;	
 
-	@HystrixCommand
+	@HystrixCommand(fallbackMethod="getFastPassCustomerDetailsBackup")
 	@RequestMapping(path="/customerdetails", params={"fastpassid"})
 	public String getFastPassCustomerDetails(@RequestParam String fastpassid, Model m) {
 		FastPassCustomer c = restTemplate.getForObject("http://fastpass-service/fastpass?fastpassid=" + fastpassid, FastPassCustomer.class);
@@ -34,4 +34,13 @@ public class FastPassController {
 		return "console";
 	}
 
+	public String getFastPassCustomerDetailsBackup(@RequestParam String fastpassid, Model m) {
+		
+		FastPassCustomer c = new FastPassCustomer();
+		c.setFastPassId(fastpassid);
+		System.out.println("Fallback operation called");
+		m.addAttribute("customer", c);
+		return "console";
+	}
+	
 }
