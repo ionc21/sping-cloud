@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.icsoft.bo.FastPassCustomer;
+import com.icsoft.config.TollClientRoutingConfig;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-@RibbonClient(name="fastpass-service")
+@RibbonClient(name="fastpass-service", configuration=TollClientRoutingConfig.class)
 @Controller
 public class FastPassController {
 	
